@@ -96,7 +96,16 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+			"@ui/*": ["./src/shared/ui/*"],
+      "@components/*": ["./src/shared/components/*"],
+      "@sections/*": ["./src/sections/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@assets/*": ["./src/shared/assets"]
+		}                                 /* Skip type checking all .d.ts files. */
   },
   "include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./plugins/**/*"]
 }

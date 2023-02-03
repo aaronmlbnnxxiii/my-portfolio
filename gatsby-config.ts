@@ -1,29 +1,50 @@
-import type { GatsbyConfig } from "gatsby"
+import type { GatsbyConfig } from "gatsby";
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+const prismicConfig = require("./prismic-configuration");
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Aaron Jay Malabanan`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    author: `aaronmlbnn23`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
-  graphqlTypegen: true,
+  //graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-netlify-cms",
-    "gatsby-plugin-postcss",
-    `gatsby-plugin-image`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-prismic",
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        repositoryName: process.env.GATSBY_PRISMIC_REPO_NAME,
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        customTypesApiToken: process.env.PRISMIC_CUSTOM_TYPES_API_TOKEN,
       },
     },
+    {
+      resolve: "gatsby-plugin-prismic-previews",
+      options: {
+        repositoryName: process.env.GATSBY_PRISMIC_REPO_NAME,
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        customTypesApiToken: process.env.PRISMIC_CUSTOM_TYPES_API_TOKEN,
+      },
+    },
+    // "gatsby-plugin-netlify-cms",
+    "gatsby-plugin-postcss",
+    `gatsby-plugin-image`,
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: `${__dirname}/src/images`,
+    //   },
+    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-tsconfig-paths`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -59,6 +80,6 @@ const config: GatsbyConfig = {
       },
     },
   ],
-}
+};
 
-export default config
+export default config;

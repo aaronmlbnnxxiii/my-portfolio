@@ -7,7 +7,9 @@ const defaultValues = {
     setMobileMenuActive: () => { }
 }
 
-const GlobalContext = createContext(defaultValues)
+type GlobalContextType = { mobileMenuActive?: boolean, setMobileMenuActive: any}
+
+const GlobalContext = createContext<GlobalContextType>(defaultValues)
 const isBrowser = typeof window !== undefined
 
 const GlobalProvider = ({ children }: any) => {
@@ -18,17 +20,22 @@ const GlobalProvider = ({ children }: any) => {
         let body = document.getElementsByTagName("body")[0];
 
         // apply the styles based on menu state
-        if (mobileMenuActive) body.style.overflow = "hidden";
-        else body.style.overflow = "auto";
+        if (mobileMenuActive) {
+            body.style.overflow = "hidden";
+        }
+        else {
+            body.style.overflow = "auto"
+
+        }
     }
     const { width } = useWindowSize()
 
     useEffect(() => {
         return setMobileMenuActive(() => {
-            return width < 768 && mobileMenuActive === true  ? true : false
+            return width < 768 && mobileMenuActive === true ? true : false
         })
     }, [width])
-    
+
     useEffect(() => {
         toggleMenu()
     }, [mobileMenuActive])

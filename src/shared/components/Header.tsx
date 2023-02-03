@@ -1,18 +1,15 @@
-import React, { useState, forwardRef } from "react"
+import React from "react"
 import { Link } from "gatsby"
-import { useGlobal } from "../../contexts/GlobalContext"
-import Announcement from "./Announcement"
 import { links } from "./Menu"
+import useScrollPosition from "@utils/useScrollPosition"
+import { useGlobal } from "@contexts/GlobalContext"
 
-
-const Header = forwardRef<HTMLElement>(({ siteTitle }: any, ref) => {
-
+const Header = () => {
     const { setMobileMenuActive, mobileMenuActive } = useGlobal()
-
+    const scrollPosition = useScrollPosition()
     return (
-        <header className="w-full bg-slate-100 z-50" ref={ref}>
-            <Announcement />
-            <div className="flex max-w-[1024px] w-full mx-auto justify-between px-4 h-[50px] items-center">
+        <header className={`${scrollPosition >= 40 ? "shadow-sm backdrop-blur-lg !bg-white/50" : ""}  sticky w-full bg-white z-50 top-0 left-0`}>
+            <nav className={`flex max-w-[1024px] w-full mx-auto justify-between px-4 h-[55px] items-center`}>
                 <Link to="/">Logo...</Link>
                 <ul className="hidden md:flex [&>*+*]:ml-5">
                     {links.map((val: any, index: any) => (
@@ -21,16 +18,15 @@ const Header = forwardRef<HTMLElement>(({ siteTitle }: any, ref) => {
                         </li>
                     ))}
                 </ul>
-
-                <button className="flex md:hidden flex-col p-2" onClick={() => setMobileMenuActive(!mobileMenuActive)}>
+                <button className="flex md:hidden flex-col" onClick={() => setMobileMenuActive(!mobileMenuActive)}>
                     <span className={`transition-300 w-5 h-[2px] bg-black ${mobileMenuActive ? "rotate-45 translate-y-[4px]" : ""}`}></span>
                     <span className={`transition-300 w-5 h-[2px] bg-black mt-1 ${mobileMenuActive ? "-rotate-45 -translate-y-[2px]" : ""}`}></span>
                 </button>
 
-            </div>
+            </nav>
         </header>
     )
-})
+}
 
 
 export default Header

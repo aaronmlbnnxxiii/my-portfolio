@@ -1,23 +1,15 @@
 export const links = [
     {
-        name: "Home",
-        url: "#home"
-    },
-    {
-        name: "About",
-        url: "#about"
-    },
-    {
         name: "Services",
-        url: "#services"
+        url: "/services"
     },
     {
         name: "Projects",
-        url: "#projects"
+        url: "/projects"
     },
     {
         name: "Contact",
-        url: "#contact"
+        url: "/#contact"
     },
 ]
 

@@ -9,14 +9,16 @@
   margin: 0;
 }
 
+
 body,
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  scroll-padding-top: 55px;
 }
 
 @layer components {
   .nav-item {
-    @apply font-semibold text-slate-600 hover:text-black transition-colors duration-300 ease-in-out;
+    @apply font-semibold text-[0.90rem] text-slate-600 hover:text-black transition-colors duration-300 ease-in-out;
   }
   .active {
     @apply bg-red-600;
