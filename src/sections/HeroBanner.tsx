@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button } from '@ui/button/Button'
-import { RiInformationFill, RiDiscussFill, RiCodeSSlashLine } from 'react-icons/Ri'
+import { RiInformationFill, RiDiscussFill, RiCodeSSlashLine } from 'react-icons/ri'
 import { useStaticQuery } from 'gatsby'
 import { graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
