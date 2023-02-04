@@ -3,26 +3,28 @@ import { ButtonOrLink, Props as ButtonOrLinkProps } from './ButtonOrLink';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonStyles = cva(
-	'button',
+	'rounded-md',
 	{
 		variants: {
 			intent: {
-				primary: 'bg-slate-500',
+				primary: 'bg-orange-500 text-white',
 				secondary: 'secondary',
 			},
 			fullWidth: {
-				true: 'full-width',
+				true: 'w-full !px-0',
 			},
 			size: {
-				small: "px-4 px-2",
-				medium: "medium",
-				large: "large",
+				small: "px-4 py-2",
+				medium: "px-6 py-4",
 			},
+			rounded: {
+				true: 'rounded-[20px]'
+			}
 		},
 		defaultVariants: {
-
 			intent: "primary",
-			size: "small"
+			size: "small",
+			rounded: false,
 		},
 	},
 );
@@ -31,8 +33,8 @@ export interface Props
 	extends ButtonOrLinkProps,
 	VariantProps<typeof buttonStyles> { }
 
-export const Button = ({ intent, fullWidth, size, children, ...props }: Props) => {
+export const Button = ({ intent, rounded, fullWidth, size, children, ...props }: Props) => {
 	return (
-		<ButtonOrLink className={buttonStyles({ intent, fullWidth, size })} {...props}>{children}</ButtonOrLink>
+		<ButtonOrLink className={buttonStyles({ intent, rounded, fullWidth, size })} {...props}>{children}</ButtonOrLink>
 	);
 }
