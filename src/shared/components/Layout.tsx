@@ -12,6 +12,7 @@ import { useGlobal } from '@contexts/GlobalContext'
 import Announcement from '@components/Announcement'
 import MobileMenu from '@components/MobileMenu'
 import Seo from "@components/Seo"
+import { Slice } from 'gatsby'
 
 const Layout = ({ children, title, description }: any) => {
   const { mobileMenuActive } = useGlobal()
@@ -24,16 +25,12 @@ const Layout = ({ children, title, description }: any) => {
       />
       <div className='w-full min-h-screen flex flex-col'>
         <Announcement />
-        <Header />
+        <Slice alias='header'/>
         <main>
           {mobileMenuActive && <MobileMenu />}
           {children}
         </main>
-        <footer className="px-4 flex justify-center mx-auto py-5">
-          © {new Date().getFullYear()} &middot; Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
+        <Slice alias='footer'/>
       </div>
     </>
 

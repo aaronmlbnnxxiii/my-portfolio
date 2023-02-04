@@ -5,7 +5,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   actions,
   graphql,
 }) => {
-  const { createPage } = actions;
+  const { createPage, createSlice } = actions;
 
   const { data }: any = await graphql(`
     query TypegenPage {
@@ -31,6 +31,29 @@ export const createPages: GatsbyNode["createPages"] = async ({
         lang: page.lang,
         slug: page.data.project_title.text,
       },
+    });
+  });
+
+  type SliceType = {
+    id: string;
+    component: string;
+  };
+
+  const slices: SliceType[] = [
+    {
+      id: `header`,
+      component: path.resolve(`./src/shared/components/Header.tsx`),
+    },
+    {
+      id: `footer`,
+      component: path.resolve(`./src/shared/components/Footer.tsx`),
+    },
+  ];
+
+  slices.forEach((slice: SliceType) => {
+    createSlice({
+      id: slice.id,
+      component: slice.component,
     });
   });
 };
