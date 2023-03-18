@@ -6,7 +6,8 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 import { getImage } from 'gatsby-plugin-image'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { Link } from 'gatsby'
-import { Button } from '@ui/button/Button'
+import { Button } from '@ui/Button'
+import { MyToggle } from '@ui/Switch'
 
 const Specializations = [
     {
@@ -58,7 +59,7 @@ const HeroBanner = () => {
                 <h1 className='px-2 lg:px-0 text-[2.25rem] w-auto md:text-[5.5rem] text-center font-bold leading-none tracking-[-0.065em]'>
                     {data.prismicHome.data.banner_title.text}
                 </h1>
-                    
+
                 <div className='grid grid-cols-1 md:grid-cols-3 px-4 gap-x-6 gap-y-4 mt-[50px] justify-center'>
                     {data.prismicHome.data.banner_widgets.map((val: any, i: number) => {
                         return (
@@ -75,8 +76,6 @@ const HeroBanner = () => {
                         )
                     })}
                 </div>
-
-                <Button intent="primary" size="medium" rounded={true}>Meet Aaron</Button>
             </div>
         </section>
     )
