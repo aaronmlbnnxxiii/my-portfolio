@@ -103,9 +103,9 @@
       "@components/*": ["./src/shared/components/*"],
       "@sections/*": ["./src/sections/*"],
       "@contexts/*": ["./src/contexts/*"],
-      "@utils/*": ["./src/utils/*"],
+      "@utils/*": ["src/utils/*"],
       "@assets/*": ["./src/shared/assets"],
-      "@images/*":  ["./src/images/*"]
+      "@images/*":  ["./src/images/*"],
 		}                                 /* Skip type checking all .d.ts files. */
   },
   "include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./plugins/**/*"]
