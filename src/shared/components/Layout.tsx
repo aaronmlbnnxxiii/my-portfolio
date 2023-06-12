@@ -5,39 +5,33 @@
  * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
  */
 
-import React from 'react'
-import Header from "@components/Header"
-import '../../styles/global.css'
-import { useGlobal } from '@contexts/GlobalContext'
-import Announcement from '@components/Announcement'
-import MobileMenu from '@components/MobileMenu'
-import Seo from "@components/Seo"
-import { Slice } from 'gatsby'
+import React from "react";
+import Header from "@components/Header";
+import "../../styles/global.css";
+import { useGlobal } from "@contexts/GlobalContext";
+import Announcement from "@components/Announcement";
+import MobileMenu from "@components/MobileMenu";
+import Seo from "@components/Seo";
+import { Slice } from "gatsby";
+import Footer from "./Footer";
 
-const Layout = ({ children, title, description }: any) => {
-  const { mobileMenuActive } = useGlobal()
+const Layout = ({ children, title, description, activeDocMeta }: any) => {
+  const { mobileMenuActive } = useGlobal();
 
   return (
     <>
-      <Seo
-        title={title}
-        description={description}
-      />
-      <div className='w-full min-h-screen flex flex-col'>
+      <Seo title={title} description={description} />
+      <div className="w-full min-h-screen flex flex-col">
         <Announcement />
-        <Slice alias='header'/>
+        <Header activeDocMeta={activeDocMeta} />
         <main>
           {mobileMenuActive && <MobileMenu />}
           {children}
         </main>
-        <Slice alias='footer'/>
+        <Footer/>
       </div>
     </>
+  );
+};
 
-  )
-}
-
-export default Layout
-
-
-
+export default Layout;

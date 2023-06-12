@@ -1,4 +1,4 @@
-const { defaultLanguage } = require('../../prismic-configuration')
+const { defaultLanguage } = require("../../prismic-configuration");
 
 /**
  * The Link Resolver used for the Prismic repository. This function converts a
@@ -13,19 +13,20 @@ const { defaultLanguage } = require('../../prismic-configuration')
  *
  * @type import('@prismicio/helpers').LinkResolverFunction
  */
-exports.linkResolver = (doc: any) => {
+exports.linkResolver = (doc: any, docc: any) => {
+  console.log(`Doctype: <pre>${JSON.stringify(doc)}</pre>`)
   switch (doc.type) {
-    case 'homepage': {
-      return doc.lang === defaultLanguage ? '/' : `/${doc.lang}`
+    case "home": {
+      return doc.lang === defaultLanguage ? "/" : `/${doc.lang}`;
     }
 
-    case 'page': {
+    case 'project_items': {
       return doc.lang === defaultLanguage
-        ? `/page/${doc.uid}`
-        : `/page/${doc.lang}/${doc.uid}`
+        ? `/projects/${doc.id}`
+        : `/projects/${doc.id}/${doc.lang}`
     }
 
     default:
-      return '/'
+      return "/";
   }
-}
+};

@@ -14,7 +14,7 @@ const config: GatsbyConfig = {
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
-  //graphqlTypegen: true,
+  // graphqlTypegen: true,
   plugins: [
     {
       resolve: "gatsby-source-prismic",
@@ -22,8 +22,22 @@ const config: GatsbyConfig = {
         repositoryName: process.env.GATSBY_PRISMIC_REPO_NAME,
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
         customTypesApiToken: process.env.PRISMIC_CUSTOM_TYPES_API_TOKEN,
+        linkResolver: require("./src/utils/linkResolver").linkResolver,
+        schemas: {
+          home: require("./custom_types/home.json"),
+          page: require("./custom_types/page.json"),
+          top_menu: require('./custom_types/top_menu.json'),
+          project_items: require('./custom_types/project_items.json')
+        },
       },
     },
+    // {
+    //   resolve: "gatsby-plugin-prismic-previews",
+    //   options: {
+    //     repositoryName: process.env.GATSBY_PRISMIC_REPO_NAME,
+    //     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+    //   },
+    // },
     // "gatsby-plugin-netlify-cms",
     "gatsby-plugin-postcss",
     `gatsby-plugin-image`,
@@ -70,8 +84,8 @@ const config: GatsbyConfig = {
           },
           {
             name: `Inter`,
-            file: `https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap`
-          }
+            file: `https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap`,
+          },
         ],
       },
     },
