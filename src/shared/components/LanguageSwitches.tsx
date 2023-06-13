@@ -2,29 +2,49 @@ import * as React from "react";
 import { navigate } from "gatsby";
 
 import { linkResolver } from "@utils/linkResolver";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@ui/select"
+
 
 export const LanguageSwitcher = ({ activeDocMeta }) => {
   const currentLang = activeDocMeta?.lang;
   const currentLangOption = (
-    <option value={currentLang}>{currentLang?.slice(0, 2).toUpperCase()}</option>
+    <SelectItem value={currentLang}>{currentLang?.slice(0, 2).toUpperCase()}</SelectItem>
   );
 
   const alternateLangOptions = activeDocMeta?.alternateLanguages?.map(
     (altLang, index) => (
-      <option value={linkResolver(altLang)} key={`alt-lang-${index}`}>
+      <SelectItem value={linkResolver(altLang)} key={`alt-lang-${index}`}>
         {altLang.lang.slice(0, 2).toUpperCase()}
-      </option>
+      </SelectItem>
     )
   );
 
   const handleLangChange = (event) => {
-    navigate(event.target.value);
+    navigate(event)
   };
 
+
+
   return (
-    <select value={currentLang} onChange={handleLangChange}>
-      {currentLangOption}
-      {alternateLangOptions}
-    </select>
+    // <select value={currentLang} onChange={handleLangChange}>
+    //   {currentLangOption}
+    //   {alternateLangOptions}
+    // </select>
+    <Select onValueChange={handleLangChange} defaultValue={currentLang}>
+      <SelectTrigger className="w-[40px]">
+        <SelectValue placeholder="Select" className=" font-bold" />
+      </SelectTrigger>
+      <SelectContent position="popper">
+        {currentLangOption}
+        {alternateLangOptions}
+      </SelectContent>
+    </Select>
+
   );
 };

@@ -12,6 +12,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from "gatsby";
 import { Button } from "@ui/Button";
 import { MyToggle } from "@ui/Switch";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@ui/Accordion";
 
 const Specializations = [
   {
@@ -38,6 +39,28 @@ const HeroBanner = ({ data }) => {
         <h1 className="px-2 lg:px-0 text-[2.25rem] w-auto md:text-[5.5rem] text-center font-bold leading-none tracking-[-0.065em]">
           {data.prismicHome.data.banner_title.text}
         </h1>
+
+        {/* <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It comes with default styles that matches the other components'
+              aesthetic.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It's animated by default, but you can disable it if you prefer.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion> */}
 
         <div className="grid grid-cols-1 md:grid-cols-3 px-4 gap-x-6 gap-y-4 mt-[50px] justify-center">
           {data.prismicHome.data.banner_widgets.map((val: any, i: number) => {
