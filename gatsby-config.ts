@@ -23,12 +23,6 @@ const config: GatsbyConfig = {
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
         customTypesApiToken: process.env.PRISMIC_CUSTOM_TYPES_API_TOKEN,
         linkResolver: require("./src/utils/linkResolver").linkResolver,
-        schemas: {
-          home: require("./custom_types/home.json"),
-          page: require("./custom_types/page.json"),
-          top_menu: require('./custom_types/top_menu.json'),
-          project_items: require('./custom_types/project_items.json')
-        },
       },
     },
     // {

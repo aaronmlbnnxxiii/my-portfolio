@@ -12,26 +12,28 @@ import { useGlobal } from "@contexts/GlobalContext";
 import Announcement from "@components/Announcement";
 import MobileMenu from "@components/MobileMenu";
 import Seo from "@components/Seo";
-import { Slice } from "gatsby";
+import { Slice, graphql, useStaticQuery } from "gatsby";
 import Footer from "./Footer";
 
-const Layout = ({ children, title, description, activeDocMeta }: any) => {
+const Layout = ({ children, title, description, activeDocMeta, links }: any) => {
   const { mobileMenuActive } = useGlobal();
+
 
   return (
     <>
       <Seo title={title} description={description} />
       <div className="w-full min-h-screen flex flex-col">
         <Announcement />
-        <Header activeDocMeta={activeDocMeta} />
+        <Header activeDocMeta={activeDocMeta} links={links} />
         <main>
           {mobileMenuActive && <MobileMenu />}
           {children}
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );
 };
 
 export default Layout;
+

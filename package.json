@@ -23,6 +23,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.9",
     "@prismicio/react": "^2.6.2",
+    "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-select": "^1.2.2",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
@@ -40,6 +41,7 @@
     "gatsby-source-prismic-graphql": "^3.6.2",
     "gatsby-transformer-sharp": "^5.4.0",
     "i18next": "^22.5.1",
+    "lucide-react": "^0.242.0",
     "netlify-cms-app": "^2.15.72",
     "prismic-javascript": "^3.0.2",
     "prismic-reactjs": "^1.3.4",
@@ -48,7 +50,8 @@
     "react-helmet": "^6.1.0",
     "react-i18next": "^12.3.1",
     "react-icons": "^4.7.1",
-    "tailwind-merge": "^1.13.1"
+    "tailwind-merge": "^1.13.1",
+    "tailwindcss-animate": "^1.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

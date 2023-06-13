@@ -3,7 +3,6 @@ import { GatsbyNode } from "gatsby";
 
 const { defaultLanguage } = require("./prismic-configuration");
 
-
 export const createPages: GatsbyNode["createPages"] = async ({
   actions,
   graphql,
@@ -27,11 +26,24 @@ export const createPages: GatsbyNode["createPages"] = async ({
           }
         }
       }
-      allPrismicPage {
+      allPrismicProjects {
         nodes {
           id
           lang
           url
+          alternate_languages {
+            lang
+          }
+        }
+      }
+      allPrismicServices {
+        nodes {
+          id
+          lang
+          url
+          alternate_languages {
+            lang
+          }
         }
       }
       allPrismicHome {
@@ -45,9 +57,14 @@ export const createPages: GatsbyNode["createPages"] = async ({
   `);
 
   data.allPrismicProjectItems.nodes.forEach((page: any) => {
-    const pageName =  page.data.project_title.text.replace(/\s+/g, "-").toLowerCase()
+    const pageName = page.data.project_title.text
+      .replace(/\s+/g, "-")
+      .toLowerCase();
     createPage({
-      path:   page.lang === defaultLanguage ? `/projects/${page.prismicId}` : `/projects/${page.prismicId}/${page.lang}`,
+      path:
+        page.lang === defaultLanguage
+          ? `/projects/${page.prismicId}`
+          : `/projects/${page.prismicId}/${page.lang}`,
       component: resolve(__dirname, "src/templates/test.tsx"),
       context: {
         id: page.id,
@@ -57,16 +74,28 @@ export const createPages: GatsbyNode["createPages"] = async ({
     });
   });
 
-  // data.allPrismicPage.nodes.forEach((page: any) => {
-  //   createPage({
-  //     path: page.url,
-  //     component: path.resolve(__dirname, "src/templates/page.tsx"),
-  //     context: {
-  //       id: page.id,
-  //       lang: page.lang,
-  //     },
-  //   });
-  // });
+  data.allPrismicProjects.nodes.forEach((page: any) => {
+    createPage({
+      path:
+        page.lang === defaultLanguage ? `/projects` : `/projects/${page.lang}`,
+      component: path.resolve(__dirname, "src/templates/projects.tsx"),
+      context: {
+        id: page.id,
+        lang: page.lang,
+      },
+    });
+  });
+  data.allPrismicServices.nodes.forEach((page: any) => {
+    createPage({
+      path:
+        page.lang === defaultLanguage ? `/services` : `/services/${page.lang}`,
+      component: path.resolve(__dirname, "src/templates/services.tsx"),
+      context: {
+        id: page.id,
+        lang: page.lang,
+      },
+    });
+  });
 
   data.allPrismicHome.nodes.forEach((page: any) => {
     createPage({
